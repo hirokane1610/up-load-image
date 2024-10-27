@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from './components/Card';
 
 // モックアップの文字起こしと論点抽出の関数
 const mockTranscribeAndAnalyze = (audioBlob: Blob): Promise<{ transcription: string, points: string[] }> => {
+  console.log("audioBlob", audioBlob)
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
@@ -53,6 +54,7 @@ const App: React.FC = () => {
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       const audioBuffer = await file.arrayBuffer();
       const audioSource = await audioContext.decodeAudioData(audioBuffer);
+      console.log("audioSource", audioSource)
       
       // 音声データをBlobに変換（簡略化）
       const audioBlob = new Blob([audioBuffer], { type: 'audio/wav' });
